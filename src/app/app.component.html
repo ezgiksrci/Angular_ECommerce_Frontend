@@ -1,21 +1,25 @@
 <!-- {{ Angular'daki component'in değeri çeker.}}  -->
 
-Welcome to {{title}}
+<!-- Welcome to {{title}}
 <p>
   Hello {{user}}
-
 <p>
+
 <ul>
-  <ul>
-    @for (p of products; track p.productId) {
-    <li>{{p.productId}} {{p.productName}}</li>
-    }
-  </ul>
-</ul>
+  @for (p of products; track p.productId) {
+  <li>{{p.productId}} {{p.productName}}</li>
+  }
+
+  <li *ngFor="let product of products">{{product.productName}}</li>
+</ul> -->
 
 <!-- *for bir directivedir. <li> HTML elementini manipüle ederek <li>'yi tekrarlatır. -->
 <!-- let C#taki var gibi. -->
 
-Product Name: {{product1.productName}}
+<!-- Product Name: {{product1.productName}} -->
+
+<app-navi></app-navi>
+<app-category></app-category>
+<app-product></app-product>
 
 <router-outlet></router-outlet>
