@@ -18,8 +18,17 @@
 
 <!-- Product Name: {{product1.productName}} -->
 
-<app-navi></app-navi>
-<app-category></app-category>
-<app-product></app-product>
+<div class="container">
+  <app-navi></app-navi>
+
+  <div class="row">
+    <div class="col-md-2">
+      <app-category></app-category>
+    </div>
+    <div class="col">
+      <app-product></app-product>
+    </div>
+  </div>
+</div>
 
 <router-outlet></router-outlet>
