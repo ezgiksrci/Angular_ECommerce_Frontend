@@ -5,6 +5,8 @@
 >
   <span class="sr-only"></span>
 </div>
+
+<div *ngIf="dataLoaded == true">{{ message }}</div>
 <table *ngIf="dataLoaded == true" class="table">
   <thead>
     <tr>
