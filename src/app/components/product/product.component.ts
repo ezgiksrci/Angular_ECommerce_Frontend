@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
@@ -30,9 +31,12 @@ export class ProductComponent implements OnInit {
   message: string = '';
   filterText = '';
 
+  // kullanacağımız service'leri constructor içinde injection yaparak kullanırız.
+
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -66,5 +70,9 @@ export class ProductComponent implements OnInit {
         this.dataLoaded = true;
         this.message = response.message;
       });
+  }
+
+  addToCart(product: Product) {
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
 }

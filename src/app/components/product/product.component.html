@@ -31,6 +31,7 @@
       <th>Vat Inc. Price</th>
       <th>Category ID</th>
       <th>Units in Stock</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -41,6 +42,15 @@
       <td>{{ product.unitPrice | vatAdded : 18 | currency : "TRY" }}</td>
       <td>{{ product.categoryId }}</td>
       <td>{{ product.unitsInStock }}</td>
+      <td>
+        <button
+          (click)="addToCart(product)"
+          type="button"
+          class="btn btn-primary"
+        >
+          Add to Cart
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
