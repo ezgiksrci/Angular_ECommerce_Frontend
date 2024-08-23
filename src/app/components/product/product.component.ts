@@ -73,6 +73,18 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    this.toastr.success('Hello world!', 'Toastr fun!');
+    if (product.unitsInStock === 0) {
+      this.toastr.error(
+        product.productName + ' stokta kalmadığı için sepete eklenemedi.',
+        'Hata!'
+      );
+    } else {
+      this.toastr.success(
+        product.productName + ' başarıyla sepete eklendi.',
+        'Başarılı!'
+      );
+    }
   }
 }
+
+// JS'te == yerine === olarak kullanmak daha doğru. Çünkü == 'de veri tipini önemsemeden karşılaştırır.
