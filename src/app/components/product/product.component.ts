@@ -28,6 +28,7 @@ export class ProductComponent implements OnInit {
   products: Product[] = [];
   dataLoaded = false;
   message: string = '';
+  filterText = '';
 
   constructor(
     private productService: ProductService,

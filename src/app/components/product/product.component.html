@@ -6,6 +6,21 @@
   <span class="sr-only"></span>
 </div>
 
+<div class="mb-3">
+  <label for="productFilterText" class="form-label">Product Search</label>
+  <input
+    type="text"
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="productFilterText"
+    placeholder="Search Product"
+  />
+</div>
+
+<div *ngIf="filterText.length > 2" class="alert alert-success">
+  {{ filterText }} aradınız.
+</div>
+
 <div *ngIf="dataLoaded == true">{{ message }}</div>
 <table *ngIf="dataLoaded == true" class="table">
   <thead>
@@ -13,17 +28,23 @@
       <th>ID</th>
       <th>Name</th>
       <th>Price</th>
+      <th>Vat Inc. Price</th>
       <th>Category ID</th>
       <th>Units in Stock</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products">
+    <tr *ngFor="let product of products | filterPipe : filterText">
       <th scope="row">{{ product.productId }}</th>
-      <td>{{ product.productName }}</td>
-      <td>{{ product.unitPrice }}</td>
+      <td>{{ product.productName | uppercase }}</td>
+      <td>{{ product.unitPrice | currency : "TRY" }}</td>
+      <td>{{ product.unitPrice | vatAdded : 18 | currency : "TRY" }}</td>
       <td>{{ product.categoryId }}</td>
       <td>{{ product.unitsInStock }}</td>
     </tr>
   </tbody>
 </table>
+
+<!-- {{}} One way binding. Read işlemi. -->
+<!-- Angular's two-way binding syntax is a combination of square brackets and parentheses, [()]. The [()] syntax combines the brackets of property binding, [], with the parentheses of event binding, (), as follows. -->
+<!-- Elimizde herhangi bir data varsa bunu component.ts kısmında kesinlikle tutmamız gerekir. -->
