@@ -1,0 +1,15 @@
+.badge-pill {
+    border-radius:25%;
+}
+
+.badge-success{
+    background-color: #2e8b57;
+}
+
+.badge-danger{
+    background-color: #dc3545;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}

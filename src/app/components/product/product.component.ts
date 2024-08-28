@@ -3,6 +3,7 @@ import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -36,7 +37,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -83,6 +85,7 @@ export class ProductComponent implements OnInit {
         product.productName + ' başarıyla sepete eklendi.',
         'Başarılı!'
       );
+      this.cartService.addToCart(product);
     }
   }
 }

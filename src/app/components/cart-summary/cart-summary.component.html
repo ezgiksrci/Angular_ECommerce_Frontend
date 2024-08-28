@@ -1,0 +1,38 @@
+<li class="nav-item dropdown">
+  <button
+    type="button"
+    class="btn btn-primary dropdown-toggle"
+    id="dropdownMenuButton"
+    data-bs-toggle="dropdown"
+    data-bs-auto-close="outside"
+    aria-expanded="false"
+  >
+    Cart
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li *ngIf="cartItems.length === 0" class="disabled dropdown-item">
+      Sepetiniz Boş
+    </li>
+    <li
+      *ngFor="let cartItem of cartItems"
+      class="list-group-item d-flex justify-content-between align-items-center"
+    >
+      <a class="dropdown-item">
+        <span class="badge badge-pill badge-success">{{
+          cartItem.quantity
+        }}</span>
+        {{ cartItem.product.productName }}
+        &ensp;
+        <span
+          (click)="removeFromCart(cartItem.product)"
+          class="badge badge-pill badge-danger hide"
+          >X</span
+        ></a
+      >
+    </li>
+    <li>
+      <hr class="dropdown-divider" />
+    </li>
+    <li><a class="nav-link dropdown-item">Go to Cart</a></li>
+  </ul>
+</li>
