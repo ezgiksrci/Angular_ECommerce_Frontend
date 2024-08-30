@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductComponent } from './components/product/product.component';
 import { ProductAddComponent } from './components/product-add/product-add.component';
+import { LoginComponent } from './components/login/login.component';
+import { loginGuard } from './guards/login.guard';
 
 // Uygulamadaki rotaları (yönlendirmeleri) tanımlayan bir dizi oluşturuyoruz.
 const routes: Routes = [
@@ -19,7 +21,12 @@ const routes: Routes = [
 
   // '/products/add' yoluna gidildiğinde, ProductAddComponent'i yükler.
   // Bu sayfada yeni bir ürün ekleme formu gösterilir.
-  { path: 'products/add', component: ProductAddComponent },
+  {
+    path: 'products/add',
+    component: ProductAddComponent,
+    canActivate: [loginGuard],
+  },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

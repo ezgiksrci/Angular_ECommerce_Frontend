@@ -41,14 +41,26 @@ export class ProductAddComponent implements OnInit {
   add() {
     if (this.productAddForm.valid) {
       let productModel: Product = Object.assign({}, this.productAddForm.value);
-      this.productService.add(productModel).subscribe(
-        (response) => {
+
+      this.productService.add(productModel).subscribe({
+        next: (response) => {
           this.toastr.success(response.message);
         },
-        (responseError) => {
-          this.toastr.error(responseError.headers.keys);
-        }
-      );
+        error: (responseError) => {
+          if (responseError.error && responseError.error.Errors) {
+            responseError.error.Errors.forEach(
+              (error: { ErrorMessage: any }) => {
+                this.toastr.error(error.ErrorMessage);
+              }
+            );
+          } else {
+            this.toastr.error(responseError.error.message);
+          }
+        },
+        complete: () => {
+          console.log('Request completed');
+        },
+      });
     } else {
       this.toastr.error('Please check the input fields.');
     }
